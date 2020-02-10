@@ -60,11 +60,11 @@ function setButtonsOn() {
     
 }
 
-// The function myFunction gets called when a state park button gets clicked.
+// The function getParkCode gets called when a state park button gets clicked.
 // Calling the function comes from the HTML page. The parameter is the 4-character
 // state park code.
 
-function myFunction(parkCode) {
+function getParkCode(parkCode) {
     url = `${urlFront}${parkCode}${urlRear}`; // Inserts the 4-character park code
                                               // into the middle of the URL. The
                                               // url accesses the National Park
