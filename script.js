@@ -105,6 +105,7 @@ function myFunction(parkCode) {
          **********************************************************/
         anchor.href = json.data[0].url; // url is an endpoint in the API
         anchor.setAttribute("target", "blank");
+        anchor.style.color = "black";
         anchor.textContent = "Go to the web site!";
         webURL.appendChild(anchor);
 
@@ -115,6 +116,7 @@ function myFunction(parkCode) {
          **********************************************************/
         anchor2.href = json.data[0].directionsUrl; // directionsUrl is an endpoint in the API
         anchor2.setAttribute("target", "blank");
+        anchor2.style.color = "black";
         anchor2.textContent = "Web Directions!";
         dirURL.appendChild(anchor2);
 
