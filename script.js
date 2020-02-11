@@ -1,15 +1,9 @@
 // Bob Madison
 // Eleven Fifty Academy
-// February 2020
+// February 2020. Gold Badge API
 
 const urlFront = "https://developer.nps.gov/api/v1/parks?parkCode="; // Left side of URL
 const urlRear = "&api_key=Op95hmCx8mRNRUgJK41XmbPb7kNw8kfL3cs4NNUy"; // Right side of URL
-
-// The following array is used to display the button group of the selected state
-// and to hide all of the non-selected state groups. See lines 52 - 59.
-
-let stateCodes =["AK","AR","AZ","CA","CO","FL","HI","ID","IN","KY","ME","MD","MI","MN","MT",
-                 "NC","ND","NM","NV","OH","OR","SC","SD","TN","TX","UT","VA","VI","WA","WY"]
 
 let url; // This will be the complete url to access the API.
 
@@ -37,16 +31,16 @@ stateSelector.addEventListener('change', setButtonsOn) // This is the state name
  *******************************************************************/
 function setButtonsOn() { 
   
-   let group = document.getElementById(stateSelector.value); // Grabs the button group
-                                                             // designated by the state ID.
+    let group = document.getElementById(stateSelector.value); // Grabs the button group
+                                                              // designated by the state ID.
     seeCards.style.display = "none";
 /****************************************************************************
- *  stateCodes is the array from lines 11 and 12. We use this to find
+ *  stateCodes is the array (lines 273 and 274 in vars.js). We use this to find
  *  the state's ID which is stored in stateSelecter.value. We begin at
  *  index 0 and go until the value in stateCodes[i] is equal to 
  *  stateSelector.value. When the state is found, I display the state's group
  *  of buttons. If the stateCodes[i] isn't equal to stateSelector.value, I
- *  set the display to the non-selected states to none. (lines 56 and 57)
+ *  set the display to the non-selected states to none. (lines 50 and 51)
  * 
  *****************************************************************************/
    for (let i = 0; i < stateCodes.length; i++) {
@@ -57,7 +51,6 @@ function setButtonsOn() {
            newGroup.style.display = "none";
        }
    }
-    
 }
 
 // The function getParkCode gets called when a state park button gets clicked.
@@ -84,6 +77,15 @@ function getParkCode(parkCode) {
         
         seeCards.style.display = "inline-block";         // Displays the 4 bootstrap cards
         let h5Tag = document.getElementsByTagName('h5'); // All the h5 tags assigned to h5tag
+        let image = document.getElementsByClassName("pkImage");
+
+        for (let i = 0; i < parkPictures.length; i++) {
+            if (parkPictures[i].pkId === parkCode) { // Finds the parkCode in the array in vars.js
+                for (let j = 0; j < image.length; j++) {  // There are for elements of class pkImage
+                    image[j].src = parkPictures[i].pict; // Grabs the pict link for the pkId in vars.js 
+                }
+            }
+        }
 
         for (let i = 0; i < h5Tag.length; i++) {
             h5Tag[i].innerHTML = json.data[0].fullName; // fullName is an endpoint in the API
